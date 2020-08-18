@@ -3,7 +3,7 @@ const {MongoClient} = require("mongodb");
 const api = express();
 
 api.use(express.urlencoded({extended: true}));
-api.use(express.json());
+api.use(express.json()); // Ces deux lignes vont nous permettre de pouvoir utiliser le req.body
 
 //Requete POST : pour ajouter des elements
 
@@ -11,8 +11,8 @@ async function addStudent(element) {
     let client;
     try {
         client = await MongoClient.connect("mongodb://localhost:27017", {useUnifiedTopology: true});
-        let db = client.db("TechWatchAssignator");
-        await db.collection("Students").insertOne(element); // On a inseré un document en l'occurence "tom" dans postman avec key=name value=tom
+        let db = client.db("TechWatchAssignator"); // nom de la base de données
+        await db.collection("Students").insertOne(element); // On a inseré un document en l'occurence "Davirak" dans Postman avec key=name value=Davirak
     } catch (error) {
         console.log("Oops, something went wrong, here are the details:");
         console.log(error);
@@ -22,8 +22,9 @@ async function addStudent(element) {
 }
 
 api.post("/students", function(req, res) {
+    console.log(req.body.name)
     let newStudent = {
-        name: req.body.name 
+        name: req.body.name
     }
 
     addStudent(newStudent);

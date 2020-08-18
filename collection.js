@@ -1,5 +1,7 @@
 const {MongoClient} = require("mongodb");
 
+// Creer la collection des Students
+
 async function addStudents() {
     let client;
     try {
