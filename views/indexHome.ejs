@@ -3,18 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="scriptHome"></script>
-    <title>Document</title>
+    <title>Home</title>
 </head>
 <body>
     <header>
-        <h1>My Tech-watch Assignator</h1>
-    </header>
-    <section class="liens">
-        <a href="">History Tech-watch</a>
-        <a href="">Student list</a>
-        <a href="">Tech-watch Assignation</a>
-    </section>
+        <div>
+            <h1>The Tech-Watch Assignator</h1>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a class="middle" href="http://localhost:8080/history">History Tech-watch</a></li>
+                <li><a class="middle" href="http://localhost:8080/studentsList">Student list</a></li>
+                <li><a class="middle" href="http://localhost:8080/techWatchAssignation">Tech-Watch Assignation</a></li>
+            </ul>
+        </nav>
+
     <section class="homep">
         <h2>
 Welcome to Tech-watch user ! 
@@ -27,5 +31,16 @@ had already assist; see the list of students availaible for do a tech-watch; a p
 Don’t be shy and try to go on diverses part of the website !
         </p>
     </section>
+
+    <main>
+        <p>
+    List of students they will must do a tech-watch soon:
+        </p>
+        <ul><% for (let student of studentName) { %>
+            <li class="student"><%= student.name %></li>
+    <% } %>  
+        </ul>
+    </main>
+
 </body>
 </html>

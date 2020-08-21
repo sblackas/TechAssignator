@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List of Students</title>
+    <!-- <link rel="stylesheet" href="style/header.css">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/responsif.css"> -->
+</head>
+<body>
+    <header>
+        <div>
+            <img src="Images/cap.png" alt="Logo">
+        </div>
+        <div>
+            <h1>The Tech-Watch Assignator</h1>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a class="middle" href="http://localhost:8080">Home</a></li>
+                <li><a class="middle" href="http://localhost:8080/history">History Tech-Watch</a></li>
+                <li><a class="middle" href="http://localhost:8080/techWatchAssignation">Tech-Watch Assignation</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>List of Students</h2>
+
+        <main>
+            <h2>Students</h2>
+            <ul><% for (let student of studentName) { %>
+                    <li class="student"><%= student.name %></li>
+            <% } %>  
+            </ul>
+            <form method="POST" action="/addstudent">
+                <input type="text" name="name" placeholder="student name">
+                <button>Add student</button>
+            </form>
+        </main>
+
+            <form method="POST" action="/deleteStudent">
+                <input type="text" name="name" placeholder="student name">
+                <button>Delete student</button>
+            </form>
+    
+    
+        
+    </body>
+    </html>
+            

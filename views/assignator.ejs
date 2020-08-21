@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asssignator</title>
+    <!-- <link rel="stylesheet" href="style/header.css">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/responsif.css"> -->
+</head>
+<body>
+    <header>
+        <div>
+            <img src="Images/cap.png" alt="Logo">
+        </div>
+        <div>
+            <h1>The Tech-Watch Assignator</h1>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a class="middle" href="http://localhost:8080">Home</a></li>
+                <li><a class="middle" href="http://localhost:8080/history">History Tech-Watch</a></li>
+                <li><a class="middle" href="http://localhost:8080/studentsList">Student list</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Next Tech-Watch</h2>
+
+        <main>
+
+
+            <%for (let element of watchList) { %> <!-- document= un element de notre collection, on fait une boucle à travers la collection pour recuperer chaque document -->
+                <div class="assignedTechWatch">
+                    <div class="subjectName">
+                        <h3><%= element.name %></h3> <!-- On veut que le name de chaque document dans la bdd -->
+                        <h4><%= element.nombre %></h4>
+                        <h5><%= element.deadline %></h5>
+                    </div>  
+
+                <% } %>
+
+            <form method="POST" action="createTechWatch">
+                <div id="inputs">
+                    <input type="text" name="name" placeholder="subject">
+                    <input id="date" name ="date" type="date" value="2020-08-01">
+                    <select name="nombre">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                </div>
+            <button>Create Tech-Watch</button>
+        </form>
+    </main>
+</body>
+</html>
