@@ -54,4 +54,50 @@ api.get("/studentsList", async function(req, res) {
     res.json(students); // Ici on veut envoyer nos données dans students qui fait appel à la fonction getStudents(), on met await async car cette fonction est elle même asynchrone et il faut attendre qu'elle s'execute.
 })
 
+// Requete DELETE
+
+async function deleteStudent(element) {
+    let client;
+    try { 
+        client = await MongoClient.connect("mongodb://localhost:27017/", {useUnifiedTopology: true});
+        let db = client.db("TechWatchAssignator");
+        await db.collection("Students").deleteOne({name : element}); // dans le deleteOne il faut que ce soit un objet
+    } catch (error) {
+        console.log("Oups, something went wrong! Here are the details:") 
+        console.log(error) 
+    } finally { 
+        client.close();
+    }
+}
+
+api.delete("/studentsList/:name", function(req,res) {
+    console.log(req);
+    deleteStudent(req.params.name);
+    res.send();
+})
+
+
+// Pour la troisième page, faire une nouvelle collection pour les veilles
+
+async function createTechWatch() {
+    const client = await MongoClient.connect("mongodb://localhost:27017/", {useUnifiedTopology: true});
+    const db = await client.db('TechWatchAssignator');
+
+    api.post('/watchList', function (req,res) {
+        db.collection('veilles').insertOne({name: req.body.name, subject: req.body.subject, deadline : req.body.deadline, nombre : req.body.nombre })
+        res.send('envoyer')
+    })
+
+    api.get('/watchList', async function (req,res) {
+        let results = await db.collection("veilles").find().toArray(); // results va etre un tableau qui affiche toutes les donnees 
+        res.json(results);
+    })
+
+   
+}
+
+
+createTechWatch();
+
+
 api.listen(8000);
